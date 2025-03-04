@@ -1,4 +1,7 @@
-public class Connections{
+public class Connections {
 
+public static void getConnection(){
+
+}
 
 }
