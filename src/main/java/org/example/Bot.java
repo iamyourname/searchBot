@@ -19,6 +19,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
+import static org.example.Connections.searchCity;
+
 public class Bot extends TelegramLongPollingBot {
     private final Map<Long, String> oneWordFromChat = new ConcurrentHashMap<>();
     final static Logger logger = LoggerFactory.getLogger(Bot.class);
@@ -44,7 +46,7 @@ public class Bot extends TelegramLongPollingBot {
         var callback = update.getCallbackQuery();
         var id = callback.getId();
         */
-
+        /*
         var next = InlineKeyboardButton.builder()
                 .text("Next").callbackData("next")
                 .build();
@@ -65,12 +67,30 @@ public class Bot extends TelegramLongPollingBot {
                 .keyboardRow(List.of(back))
                 .keyboardRow(List.of(url))
                 .build();
+                */
+       // sendText(id,msg.getText());
+
+        if(msg.isCommand()){
+            if(msg.getText().equals("/start")){
+                sendText(id,"ВВЕДИТЕ ГОРОД");
+            }
+        }else {
+            if(msg.getText().equals("МОСКВА")){
+
+                if(searchCity("МОСКВА")) {
+                    sendText(id,"ГОРОД НАЙДЕН");
+                    sendText(id,"ВВЕДИ УЛИЦУ");
+                }else {
+
+                }
+            }
+        }
+
         //git
         //System.out.println(user.getUserName()+"("+id+")"+": "+msg.getText());
         //sendText(id,"hello");
-        sendMenu(id, "<b>Menu 1</b>", keyboardM1);
-
         /*
+         sendMenu(id, "<b>Menu 1</b>", keyboardM1);
         if(msg.isCommand()){
             if(msg.getText().equals("/status")){ // обработка status
                 try {
@@ -105,6 +125,8 @@ public class Bot extends TelegramLongPollingBot {
             sendText(id, msg.getText());
         }
         */
+
+
 
 
     }

@@ -8,13 +8,13 @@ public class Connections {
 final public static String baseDriver = "org.postgresql.Driver";
     public static Connection conn;
 
-    public static String url = "jdbc:postgresql://90.156.209.209:5432/domofon";
+    public static String url = "jdbc:postgresql://194.87.101.132:5432/domofon";
 
     public static void initConnection(){
         try {
             System.out.println("TRY TO INIT AND CONNECT LOG DATABASE");
             Class.forName(baseDriver);
-            conn = DriverManager.getConnection(url, "msql", "xid123mt");
+            conn = DriverManager.getConnection(url, "domofon", "xid123mt");
             conn.setAutoCommit(false);
             System.out.println("LOG DATABASE...OK");
         } catch (SQLException e) {
@@ -42,11 +42,12 @@ final public static String baseDriver = "org.postgresql.Driver";
             while (resultSet.next()){
                 res = resultSet.getString(1);
             }
-            if(Integer.parseInt(res)==0){
+            if(Integer.parseInt(res)!=0){
                 result = true;
             }else {
                result = false;
             }
+            System.out.println("RESULT: "+result);
             // logger.info("writeNewDailyUsersCount DONE");
         }catch (SQLException e){
             System.out.println(e.toString());
