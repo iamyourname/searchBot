@@ -23,7 +23,7 @@ final public static String baseDriver = "org.postgresql.Driver";
             throw new RuntimeException(e);
         }
     }
-
+    // moiseev
     public static boolean searchCity(String city){
 
         String query = "SELECT\n" +
